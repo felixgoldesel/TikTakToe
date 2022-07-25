@@ -23,11 +23,13 @@ class Player:
     occupied_x8 = False
     occupied_x9 = False
     win_player = False
+    draw = False
 
-    def __init__(self, x_o):
+    def __init__(self, x_o, list_possibilities):
+        self.list_possibilities = list_possibilities
         self.x_o = x_o
 
-    def set_x(self, arr1, arr2, arr3): #list_possibilities_2
+    def set_sign(self, arr1, arr2, arr3):
 
         input_field = int(input())
         if input_field == 1:
@@ -36,56 +38,63 @@ class Player:
             else:
                 arr1[0] = self.x_o
                 self.occupied_x1 = True
-                #self.remove_possibilities(list_possibilities_2, input_field)
-                #print(list_possibilities_2)
+                self.remove_possibilities(self.list_possibilities, input_field)
         elif input_field == 2:
             if arr1[1] == self.x_o:
                 print("Dieses Feld ist bereits belegt!")
             else:
                 arr1[1] = self.x_o
                 self.occupied_x2 = True
+                self.remove_possibilities(self.list_possibilities, input_field)
         elif input_field == 3:
             if arr1[2] == self.x_o:
                 print("Dieses Feld ist bereits belegt!")
             else:
                 arr1[2] = self.x_o
                 self.occupied_x3 = True
+                self.remove_possibilities(self.list_possibilities, input_field)
         elif input_field == 4:
             if arr2[0] == self.x_o:
                 print("Dieses Feld ist bereits belegt!")
             else:
                 arr2[0] = self.x_o
                 self.occupied_x4 = True
+                self.remove_possibilities(self.list_possibilities, input_field)
         elif input_field == 5:
             if arr2[1] == self.x_o:
                 print("Dieses Feld ist bereits belegt!")
             else:
                 arr2[1] = self.x_o
                 self.occupied_x5 = True
+                self.remove_possibilities(self.list_possibilities, input_field)
         elif input_field == 6:
             if arr2[2] == self.x_o:
                 print("Dieses Feld ist bereits belegt!")
             else:
                 arr2[2] = self.x_o
                 self.occupied_x6 = True
+                self.remove_possibilities(self.list_possibilities, input_field)
         elif input_field == 7:
             if arr3[0] == self.x_o:
                 print("Dieses Feld ist bereits belegt!")
             else:
                 arr3[0] = self.x_o
                 self.occupied_x7 = True
+                self.remove_possibilities(self.list_possibilities, input_field)
         elif input_field == 8:
             if arr3[1] == self.x_o:
                 print("Dieses Feld ist bereits belegt!")
             else:
                 arr3[1] = self.x_o
                 self.occupied_x8 = True
+                self.remove_possibilities(self.list_possibilities, input_field)
         elif input_field == 9:
             if arr3[2] == self.x_o:
                 print("Dieses Feld ist bereits belegt!")
             else:
                 arr3[2] = self.x_o
                 self.occupied_x9 = True
+                self.remove_possibilities(self.list_possibilities, input_field)
         else:
             print("Diese Eingabe ist nicht möglich")
 
@@ -106,44 +115,24 @@ class Player:
         elif self.occupied_x7 and self.occupied_x8 and self.occupied_x9 is True:
             self.win_player = True
 
+        if not self.list_possibilities:
+            self.draw = True
+
         print(arr1)
         print(arr2)
         print(arr3)
 
+    def remove_possibilities(self, list_possibilities, input_field):
+        temp = []
 
-    def remove_possibilities(self, list_possibilities_2, input_field):
-        #for i in range(len(list_possibilities_2)):
+        for possibility in self.list_possibilities:
 
-        #c = False
-        #for i in range(len(list_possibilities_2)):
-        for i in range(len(list_possibilities_2)):
-            # i gibt index zurück
-            #arr = []
-            #print(list_possibilities_2[i])
-            #print(list_possibilities_2[i])
-            for j in list_possibilities_2[i]:
-                #j gibt value zurück
-                #print(j)
-                #print(list_possibilities_2[i][j])
-                if list_possibilities_2[i][j] == input_field:
-                    c = True
-                    #print("du arsch")
-                    #print(len(list_possibilities_2[i]))
-                    #arr = np.append(arr, list_possibilities_2[i])
-                    #list_possibilities_2.pop()
-                    #print(arr)
-                    #np.delete(list_possibilities_2, 0)
-                    #list_possibilities_2 = np.delete(list_possibilities_2, )
-            if c:
-                list_possibilities_2.pop(i)
+            for number in possibility:
+                if number == input_field:
+                    temp.append(possibility)
+                    continue
 
+        self.list_possibilities = [element for element in self.list_possibilities if element not in temp]
+        print(self.list_possibilities)
+        return self.list_possibilities
 
-            print(i)
-            #print(list_possibilities_2)
-            #print(list_possibilities_2)
-            #print(len(list_possibilities_2))
-            #print(list_possibilities_2.size)
-            #print(arr)
-        #for y in range(len(list_possibilities_2)):
-         #   if np.array_equal(arr, list_possibilities_2):
-          #      np.delete(list_possibilities_2, )
