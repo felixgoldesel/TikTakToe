@@ -117,6 +117,7 @@ class Player:
 
         if not self.list_possibilities:
             self.draw = True
+            print("Unentschieden!")
 
         print(arr1)
         print(arr2)
@@ -133,6 +134,6 @@ class Player:
                     continue
 
         self.list_possibilities = [element for element in self.list_possibilities if element not in temp]
-        print(self.list_possibilities)
+        #print(self.list_possibilities)
         return self.list_possibilities
 

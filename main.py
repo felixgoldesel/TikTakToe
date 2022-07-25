@@ -26,16 +26,12 @@ def main(turn=1):
             turn += 1
             if player1.win_player:
                 print("Spieler 1 gewinnt!")
-            if not player1.list_possibilities:
-                print("Unentschieden!")
         elif turn % 2 == 0:
             print("Spieler 2 ist dran: Setze dein Zeichen (1-9)")
             player2.set_sign(arr1, arr2, arr3)
             turn += 1
             if player2.win_player:
                 print("Spieler 2 gewinnt!")
-            if not player2.list_possibilities:
-                print("Unentschieden!")
 
 
 if __name__ == "__main__":
